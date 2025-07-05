@@ -20,7 +20,7 @@ Il s'agit d'une structure multi tenant par schema.
 Dans ce texte vous allez developer la phase d'inscription sous forme d'un scheduler springboot (CRON s'executant automatiquement et nuitament) pour piocher les données depuis la base de donnée skolae_db vers la base de données skolae_tenants,
 et inscrire dans skolae_tenants les établissments pre-inscrits dans skolae_db. 
 
-# fiche Techniaue
+# fiche Technique
 Fonctionnalités à implémenter
 
 1. Etape premier: Vous pouvez utiliser le projet gradle registration-service tout comme vous pouvez générer un projet maven selon votre choix.
@@ -42,13 +42,13 @@ Fonctionnalités à implémenter
     createdAt: Datetime;
     }
       ```
-2. Etape trois: pensez a bien definir skolae_db comme readDatasource et skolae_tenants commme writeDatasource
-3. Vous recurperez toutes les ecoles prinscrites dans skolae_db dans une prodedure read, vous parcourerez la liste, 
-   puis, pour chaque ecole, vous creerez de maniere dynamique un schema postgres pour chaque ecole a partir du nom de l'ecole. 
-   Par exemple pour l'ecole ayant pour nom d'etablissement "Eductive Paris", le scheduler devra creer le schama "eductive_paris" dans la table skolae_tenants.
+2. Etape trois: pensez à bien definir skolae_db comme readDatasource et skolae_tenants commme writeDatasource
+3. Vous recurperez toutes les ecoles prinscrites dans skolae_db dans v d'une prodedure read, vous parcourerez la liste, 
+   puis, pour chaque ecole, vous créerez de maniere dynamique un schema postgres pour chaque école dans la base de donnée skolea_tenants à partir du nom de l'école courant. 
+   Par exemple pour l'école ayant pour nom d'etablissement "Eductive Paris", le scheduler devra créer le schama "eductive_paris" dans la table skolae_tenants.
    verifier les syntax que doivent respecter les noms de schema sous postgresql (Il ne devrait pas y avoir d'espace ni de tiret du 6 dans le nom d'un schama postgres)
-3. Une fois le schema creee pour cette école dans la boucle, vous inscrivez cette école dans son propre schema en ajoutant a l'entite Ecole les champs de table "isVerified",
-   et upadatedAt, comme ci-dessous:
+3. Une fois le schema créee pour lécole courante dans la boucle, vous inscrivez cette école dans son propre schema en ajoutant a l'entité Ecole de nouveaux champs de table comme
+   "isVerified" et upadatedAt, comme ci-dessous:
       ``` modele entité
     class Ecole {
     id: uuid;
@@ -65,18 +65,15 @@ Fonctionnalités à implémenter
     updatedAt: Datetime;
     }
       ```
-4. N'hesitez pas d'utiliser Transactional pour garantir l'intergrite des tratements, et Caffeine par exemple pour le caching tenant.
-4. A l'éxecution de votre scheduler, on devra voir crées 5 nouveaux schema postgres dans la base de donnees skolae_tenants. 
+4. N'hesitez pas d'utiliser Transactional pour garantir l'intergrité des traitements, et Caffeine par exemple pour le caching tenant.
+4. A l'éxecution de votre scheduler, on devra voir crées 5 nouveaux schema postgres dans la base de donnees skolae_tenants comme suit: 
    "eductive-paris", "pole-eduction-lyon", "centre-edu", "formation-sure", "edurecka". 
-   Et dans chacun de ces schemas on devra voir une table Ecole dans laquelle est enregistées l'école portant le nom du schema.
-5. Creer egalement un endpoint permettant d'executer ce scheduler manuellement.
+   Et dans chacun de ces schemas on devra voir une table Ecole dans laquelle est enregistées l'école portant le nom de ce schema.
+5. Créer également un controller (un endpoint GET par exemple) permettant d'executer ce scheduler manuellement.
 
 
-    Vous trouverez à la racine de ce dossier le repertoire registration-service qui est un projet springboot gradle avec des dependances repondant aux exigences techniques,
+    Vous trouverez à la racine de ce dossier le repertoire registration-service qui est un projet springboot gradle avec des dependances répondant aux exigences techniques,
     mais vous pouvez généner un projet maven ou gradle selon votre convenance.
-    Un établissement scolaire a les caractéristiques suivantes :
-
-
 
 2. Frontend d'énscription
 
@@ -91,7 +88,8 @@ Vous n'êtes pas appelé à developper le backend de cette authentification. Ger
 
 
 ## Ce qui est attendu
-- Developer les tâches attendues côté bckend en suivant les specifications.
+- Developer les tâches attendues côté bckend en suivant les specifications. Gardez a l'esprit qu'apres execution de votre scheduler, 
+  on veut retrouver toutes les écoles de Table Ecole de la base de données skolea_db, dans la base de données skolea_tenants, mais chacun dans un schema séparé.
 - Developer les tâches attendues côté frontend.
   (A rendre sous 2 jours à compter de la date de reception)
 
