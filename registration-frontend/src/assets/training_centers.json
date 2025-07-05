@@ -1,0 +1,13 @@
+[
+  {
+  "id": 28,
+  "nom_etablissement": "Eductive Paris",
+  "pole_formation": "Informatique",
+  "annee_immatriculation": "2002",
+  "adresse_siege": "25 avenue Victor Hugo, 69006 Lyon",
+  "nom_representant": "Daniel",
+  "prenom_representant": "DUPONT",
+  "telephone":"+33 4 72 33 44 55",
+  "types_formation": "formation en ligne"
+ }
+]

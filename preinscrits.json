@@ -1,0 +1,62 @@
+[
+  {
+    "id": "96637c97-6008-4938-a0ce-5437d8067081",
+    "nom_etablissement": "Eductive Paris",
+    "pole_formation": "Informatique",
+    "annee_immatriculation": "2002",
+    "adresse_siege": "25 avenue Victor Hugo, 69006 Lyon",
+    "nom_representant": "Daniel",
+    "prenom_representant": "DUPONT",
+    "telephone":"+33 4 72 33 44 55",
+    "types_formation": "formation hybride",
+    "createdAt": "2025-06-04"
+  },
+  {
+    "id": "96637c97-6008-5374-a0ce-5437d8067081",
+    "nom_etablissement": "Pole eduction Lyon",
+    "pole_formation": "Management",
+    "annee_immatriculation": "2017",
+    "adresse_siege": "28 Jean durand, 75002",
+    "nom_representant": "Eric",
+    "prenom_representant": "LAFONT",
+    "telephone":"+33 4 72 33 44 55",
+    "types_formation": "formation en ligne",
+    "createdAt": "2025-06-04"
+  },
+  {
+    "id": "96637c97-2046-4938-a0ce-5437d8067081",
+    "nom_etablissement": "Centre Edu",
+    "pole_formation": "Art et Design",
+    "annee_immatriculation": "2000",
+    "adresse_siege": "14 avenue Gallieni, 87500",
+    "nom_representant": "Blaise",
+    "prenom_representant": "DIAGNE",
+    "telephone":"+33 4 72 33 44 55",
+    "types_formation": "formation en ligne",
+    "createdAt": "2025-06-04"
+  },
+  {
+    "id": "12757c97-6008-4938-a0ce-5437d8067081",
+    "nom_etablissement": "Formation sure",
+    "pole_formation": "Marketing",
+    "annee_immatriculation": "2022",
+    "adresse_siege": "16 Rue de la fosse, 72000 Le Mans",
+    "nom_representant": "Luc",
+    "prenom_representant": "MILAN",
+    "telephone":"+33 4 72 33 44 55",
+    "types_formation": "formation hybride",
+    "createdAt": "2025-06-04"
+  },
+  {
+    "id": "96637c97-6008-4938-a0ce-5437d8060987",
+    "nom_etablissement": "Edurecka",
+    "pole_formation": "Informatique",
+    "annee_immatriculation": "2002",
+    "adresse_siege": "16 avenue Victor Hugo, 75012 Lyon",
+    "nom_representant": "Ted",
+    "prenom_representant": "CRUZ",
+    "telephone":"+33 4 72 33 44 55",
+    "types_formation": "formation en ligne",
+    "createdAt": "2025-06-04"
+  }
+]

@@ -1,0 +1,31 @@
+<h1 class="text-center">Liste des Ecoles Preinscrites</h1>
+
+<p-button label="Ajouter un centre scolaire" (onClick)="onCreate()" class="block text-center"/>
+
+<p-dataView #dv [value]="training_centers()">
+    <ng-template pTemplate="list" let-trainingcenters>
+        @for (training_center of trainingcenters; track training_center) {
+            <p-card class="block mb-2">
+                <span class="font-medium text-secondary text-sm">{{ training_center.category }}</span>
+                <div class="text-lg font-medium text-900 mt-2">{{ training_center.name }}</div>
+
+                <ng-template pTemplate="footer">
+                    <div class="flex gap-3 mt-1">
+                        <p-button label="Modifier" severity="secondary" (onClick)="onUpdate(training_center)"/>
+                        <p-button label="Supprimer" severity="danger" (onClick)="onDelete(training_center)" />
+                    </div>
+                </ng-template>
+            </p-card>
+        }
+    </ng-template>
+</p-dataView>
+
+<p-dialog [(visible)]="isDialogVisible"
+    [style]="{ width: '50vw' }"
+    header="Ajout/Edition de centre scolaire">
+    <app-training-center-form
+        [training_center]="editedTraining_center()"
+        (save)="onSave($event)"
+        (cancel)="onCancel()"
+    />
+</p-dialog>

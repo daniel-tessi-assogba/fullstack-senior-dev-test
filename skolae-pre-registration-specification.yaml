@@ -1,0 +1,84 @@
+openapi: 3.1.0
+info:
+  title: API de préinscription SKOLAE (multipart)
+  version: 1.0.0
+  description: >
+    Cette API permet aux écoles du réseau SKOLAE de se préinscrire en tant que tenants via un formulaire multipart.
+
+servers:
+  - url: https://api.skolae.fr/bff
+    description: Serveur BFF SKOLAE
+
+paths:
+  /preinscriptions:
+    post:
+      summary: Préinscription d'une école (multipart)
+      description: >
+        Permet à une école de transmettre ses informations légales ainsi que ses pièces justificatives.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                nom_etablissement:
+                  type: string
+                  example: Eductive Paris
+                pole_formation:
+                  type: string
+                  example: Commerce et Marketing
+                format_enseignement:
+                  type: string
+                  enum: [presentiel, distanciel, hybride]
+                  example: hybride
+                annee_immatriculation:
+                  type: integer
+                  example: 2015
+                adresse_siege:
+                  type: string
+                  example: 25 avenue Victor Hugo, 69006 Lyon
+                nom_representant:
+                  type: string
+                  example: Durand
+                prenom_representant:
+                  type: string
+                  example: Claire
+                telephone:
+                  type: string
+                  example: "+33 4 72 33 44 55"
+                email:
+                  type: string
+                  format: email
+                  example: c.durand@ges.fr
+                types_formation:
+                  type: array
+                  items:
+                    type: string
+                    enum: ["cours_en_ligne_avec_instructeur", "formation_en_classe"]
+                  example: ["formation_en_classe"]
+                pieces_justificatives:
+                  type: array
+                  items:
+                    type: string
+                    format: binary
+                  description: Pièces jointes (PDF, images, etc.)
+              required:
+                - nom_etablissement
+                - pole_formation
+                - format_enseignement
+                - annee_immatriculation
+                - adresse_siege
+                - nom_representant
+                - prenom_representant
+                - telephone
+                - email
+                - types_formation
+
+      responses:
+        '201':
+          description: École préinscrite avec succès
+        '400':
+          description: Erreur de validation ou données manquantes
+        '409':
+          description: École déjà préinscrite
